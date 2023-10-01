@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Display Best School 10 times
+# But fot the 9th iteration, display Best School and then Hi on a new line.
+# You must use the while loop (for and until are forbidden)
+# You must use the if statement
+
+count=1
+while [ $count -le 10 ]
+do
+	if [ $count -eq 9 ]
+	then
+		echo "Best School"
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	count=$((count+1))
+done

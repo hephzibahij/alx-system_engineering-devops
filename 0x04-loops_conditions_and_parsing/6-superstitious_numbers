@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Display number from 1 to 20 and:
+# display 4 and then bad luck from china for the 4th loop iteration
+# display 9 and then bad luck from japan for the 9th loop iteration
+# display 17 and then bad luck from Italy for the 17th loop iteration
+
+#  Using the while loop (for and until are forbidden)
+#  Using the case statement
+
+count=1
+while [ $count -le 20 ]
+do
+	case $count in
+		4)
+			echo "4"
+			echo "bad luck from China"
+			;;
+		9)
+			echo "9"
+			echo "bad luck from Japan"
+			;;
+		17)
+			echo "17"
+			echo "bad luck from Italy"
+			;;
+		*)
+			echo $count
+			;;
+	esac
+	count=$((count+1))
+done
