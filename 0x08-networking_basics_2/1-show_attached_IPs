@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
+# Displays all acive IPv4 addresses on the machine.
 
-# Get the list of network interfaces
-interfaces=$(ip -o link show | awk -F ': ' '{print $2}')
-
-# Loop through each network interface and display its IPv4 addresses
-for iface in $interfaces; do
-    ipv4_addresses=$(ip -o -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep -v '127.0.0.1')
-    if [ -n "$ipv4_addresses" ]; then
-        echo "IPv4 addresses for interface $iface:"
-        echo "$ipv4_addresses"
-else
-        echo
-fi
+ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 6-
