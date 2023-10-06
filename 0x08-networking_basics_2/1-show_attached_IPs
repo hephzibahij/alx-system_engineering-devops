@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Get the list of network interfaces
+interfaces=$(ip -o link show | awk -F ': ' '{print $2}')
+
+# Loop through each network interface and display its IPv4 addresses
+for iface in $interfaces; do
+    ipv4_addresses=$(ip -o -4 addr show $iface | awk '{print $4}')
+    if [ -n "$ipv4_addresses" ]; then
+        echo "IPv4 addresses for interface $iface:"
+        echo "$ipv4_addresses"
+        echo
+    fi
+done
