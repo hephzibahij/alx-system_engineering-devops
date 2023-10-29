@@ -1,0 +1,46 @@
+https://imgur.com/a/n1qZ5YT?s=wa
+
+What is a server?
+A server is a computer system that responds to requests from other computers or devices (clients) connected to it over a network,
+typically the internet.
+
+What is the role of the domain name?
+The domain name is used to identify a website on the internet. It serves as a user-friendly address that people
+can use to access your website without having to remember its IP address.
+
+What type of DNS record www is in www.foobar.com?
+The www record in www.foobar.com is a subdomain record that is used to indicate that the website is hosted on the World Wide Web.
+
+What is the role of the web server?
+The web server's role is to receive and respond to HTTP requests from web clients (such as browsers),
+by serving web pages or other web-based content. In this infrastructure, we will use Nginx as the web server.
+
+What is the role of the application server?
+The application server's role is to execute the business logic of the website's application.
+It runs the code base (written in a language like Python, Ruby, or Java) that interacts with
+the web server and the database to generate dynamic content. In this infrastructure, we will use Gunicorn as the application server.
+
+What is the role of the database?
+The database's role is to store and manage data for the website's application.
+It provides a way for the application server to store and retrieve data, such as user accounts, posts,
+comments, and other information. In this infrastructure, we will use MySQL as the database.
+
+What is the server using to communicate with the computer of the user requesting the website?
+The server communicates with the user's computer using HTTP (Hypertext Transfer Protocol)
+over the internet. When a user requests a web page, their browser sends an HTTP request to
+the server, which responds with an HTTP response containing the requested content.
+
+Issues with this infrastructure:
+
+SPOF (Single Point of Failure): Since this infrastructure is running on a single server, if the server fails,
+the entire website will go down. To mitigate this, we could use load balancing and deploy the infrastructure
+on multiple servers to ensure high availability.
+
+Downtime during maintenance: Whenever we need to perform maintenance tasks, such as deploying new code, we
+will need to restart the web server, which will result in some downtime for the website. To mitigate this,
+we could use rolling updates, where we update one server at a time, or use a zero-downtime deployment strategy.
+
+Cannot scale if too much incoming traffic: This infrastructure can only handle a limited amount of traffic.
+If there is a sudden spike in traffic, the server may become overwhelmed and slow down or crash. To mitigate
+this, we could use a cloud hosting provider, such as AWS or Google Cloud, which provides auto-scaling features
+to automatically add more resources when traffic increases.
