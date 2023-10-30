@@ -1,0 +1,26 @@
+https://imgur.com/a/20NNmKE?s=wa
+
+We are adding 3 firewalls to provide multiple layers of protection to the web infrastructure, and to control incoming and outgoing traffic.
+An SSL certificate is being added to serve www.foobar.com over HTTPS to encrypt the traffic between the web server and the client's browser,
+providing security and privacy.
+3 monitoring clients are being added to collect data from different parts of the infrastructure, to detect and troubleshoot issues in real
+time.
+Firewalls are added to control and monitor traffic to and from the servers, which are essential for protecting the infrastructure against
+malicious attacks, data breaches, and unauthorized access.
+HTTPS is being used to encrypt the traffic between the web server and the client's browser, to protect sensitive data, such as login
+credentials, credit card information, and personal details, from being intercepted by third-party attackers.
+Monitoring is used to keep track of the web infrastructure's performance, uptime, and security, and to detect any anomalies,
+errors, or failures in real time.
+The monitoring tool collects data through various methods, such as agent-based or agentless monitoring, log analysis, network
+traffic analysis, and application performance monitoring.
+To monitor the web server's QPS, we can use tools such as Apache JMeter, Siege, or Locust, which simulate multiple user
+requests and measure the server's response time, throughput, and error rate.
+
+Issues with the infrastructure:
+
+Terminating SSL at the load balancer level is an issue because it can create a single point of failure and increase the risk of SSL attacks,
+such as man-in-the-middle attacks or SSL stripping.
+Having only one MySQL server capable of accepting writes is an issue because it can create a bottleneck and reduce the scalability,
+availability, and performance of the database, especially under high traffic or workload.
+Having servers with all the same components (database, web server, and application server) might be a problem because it can create
+a lack of redundancy, increase the risk of single points of failure, and reduce the fault tolerance and resilience of the infrastructure.
