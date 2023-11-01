@@ -1,0 +1,17 @@
+https://imgur.com/a/qw7viYV?s=wa
+In this design, there are two servers, each with Nginx, Application Server, and MySQL. The Load Balancer distributes the incoming traffic 
+between the two servers. The DNS points to the IP address of the Load Balancer.
+
+The load balancer is configured with a round-robin algorithm, meaning it will distribute traffic evenly between the servers.
+
+The load balancer is configured with an Active-Active setup, meaning both servers are active and serving traffic.
+
+The database is set up as a Primary-Replica (Master-Slave) cluster. The Primary node is the server that receives all the writes from the 
+application, while the Replica node(s) are servers that replicate the data from the Primary node. In case the Primary node fails, 
+one of the Replica nodes can be promoted to Primary.
+
+The issues with this infrastructure include the lack of security measures like a firewall or HTTPS, as well as the lack of monitoring. 
+Additionally, if the Load Balancer or Primary node fails, the system will experience a Single Point of Failure (SPOF).
+
+HAproxy is configured with a round-robin distribution algorithm. This means that incoming requests are distributed evenly 
+across the two application servers.
