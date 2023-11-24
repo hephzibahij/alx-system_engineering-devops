@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-# Puppet that install flask
+# Using Puppet that install flask from pip3
 
 package { 'flask':
   ensure   => '2.0.1',
