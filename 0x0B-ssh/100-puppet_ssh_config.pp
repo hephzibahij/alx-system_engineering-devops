@@ -1,17 +1,27 @@
 #!/usr/bin/env bash
-# Create or manage the SSH client configuration file
+# Puppet script to change client config file ssh
 
-file { '/home/your_username/.ssh/config':
-  ensure => file,
-  owner  => 'your_username', # Replace with your actual username
-  group  => 'your_username', # Replace with your actual username
-  mode   => '0600',          # Set appropriate permissions
+file_line { 'Turn off passwd auth':
+  path  => '/etc/ssh/sshd_config',
+  line  => 'PasswordAuthentication no',
+  match => '^#PasswordAuthentication yes',
+}
 
-  content => "
-    Host your_server
-      HostName your_server_ip_or_hostname
-      User ubuntu
-      IdentityFile ~/.ssh/school
-      PasswordAuthentication no
-  ",
+file_line { 'Declare identity file':
+  path  => '/etc/ssh/ssh_config',
+  line  => 'IdentityFile ~/.ssh/id_rsa',
+  match => '^#   IdentityFile ~/.ssh/id_rsa',
+}
+
+file { '/home/vagrant/.ssh/id_rsa':
+  source  => '/vagrant/id_rsa',
+  mode    => '0600',
+  owner   => 'vagrant',
+  group   => 'vagrant',
+}
+
+class { 'ssh':
+  service_hasstatus => false,
+  service_restart   => '/etc/init.d/ssh reload',
+  service_name      => 'ssh',
 }
