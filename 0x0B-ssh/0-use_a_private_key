@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Set the server IP address or hostname
+
+ssh -i ~/.ssh/school ubuntu@34.201.68.90
