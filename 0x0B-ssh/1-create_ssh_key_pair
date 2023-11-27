@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
-
-# Set the key file name
-key_name="school"
-
-# Set the number of bits for the key
-key_bits=4096
-
-# Set the passphrase
-passphrase="betty"
-
 # Generate the RSA key pair
+
 ssh-keygen -t rsa -b 4096 -f school -n betty
