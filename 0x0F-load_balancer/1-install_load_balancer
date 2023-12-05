@@ -1,19 +1,26 @@
 #!/usr/bin/env bash
-# script that sets up nginx
-sudo apt-get update
-sudo apt-get install haproxy
+# Script to install and configure HAProxy on lb-01 server
 
-echo "
+# Update the package list
+sudo apt-get -y update
+apt-get -y install haproxy
 
-frontend http_front
-    bind *:80
-    mode http
-    default_backend http_back
+# edit config file
+server_config=\
+"
+frontend  kharisrem-frontend
+        bind *:80
+        mode http
+        default_backend kharisrem-backend
+backend kharisrem-backend
+        balance roundrobin
+        server 397684-web-01 52.86.65.66:80 check
+        server 397684-web-02 35.153.79.9:80 check
+"
+echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
-backend http_back
-    mode http
-    balance roundrobin
-    server 181572-web-01 54.237.49.88:80 check
-    server 181572-web-02 100.26.247.192:80 check
-" | sudo tee /etc/haproxy/haproxy.cfg
+# enable haproxy to be started by init script
+
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+
 sudo service haproxy restart
