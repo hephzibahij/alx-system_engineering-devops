@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# script that sets up nginx
+sudo apt-get update
+sudo apt-get install haproxy
+
+echo "
+
+frontend http_front
+    bind *:80
+    mode http
+    default_backend http_back
+
+backend http_back
+    mode http
+    balance roundrobin
+    server 181572-web-01 54.237.49.88:80 check
+    server 181572-web-02 100.26.247.192:80 check
+" | sudo tee /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
