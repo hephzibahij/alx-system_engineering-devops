@@ -2,7 +2,11 @@
 # Config file for connecting to a server without password
 
 Host your_server
-    HostName 34.201.68.90
+    HostName 52.3.241.38
+    SendEnv LANG LC_*
+    HashKnownHost yes
     User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
+    GSSAPIDelegationCredentials no
+    GSSAPIAuthentication yes
